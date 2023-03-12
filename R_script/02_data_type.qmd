@@ -1,0 +1,454 @@
+---
+title: "Data Type in R"
+author: "Redzuan"
+format: revealjs
+logo: "images/AEM.png"
+footer: PE & Data Solutions
+scrollable: true
+smaller: false
+editor: visual
+toc: true
+---
+
+## Data Type
+
+Basic data type
+
+-   Character: `"a"`, `"object_a"`
+
+-   Numeric: `4`, `4.5`, `4.22`
+
+-   Integer: `1L`, `2L`, (L tells R to store object as an integer)
+
+-   Logical: `TRUE`, `FALSE` (or can be defined as T or F , but not recommended)
+
+-   Complex: `1+2i`
+
+## Object in R
+
+#### What is an Object BTW?
+
+> *The central computation in R is a function call, defined by the function object itself and the objects that are supplied as the arguments. In the functional programming model, the result is defined by another object, the value of the call. Hence the traditional motto of the S language: **everything is an object---the arguments, the value, and in fact the function and the call itself: All of these are defined as objects.** Think of objects as collections of data of all kinds. The data contained and the way the data is organized depend on the class from which the object was generated.* <br> <br> Chambers(2008)
+
+## Create R Object
+
+```{r echo=TRUE}
+
+#Character type----
+char_eg1 <- "a" #Create single character
+char_eg1
+
+char_eg2 <- as.character(1) #Explicit assignment 
+char_eg2
+
+#Numeric type ---
+num_eg1 <- 1
+num_eg1
+
+num_eg2 <- 3.142
+num_eg1
+
+num_eg3 <- as.numeric(as.Date("2002-01-01")) #Explicit numeric assignment
+num_eg3
+
+#Integer type ----
+int_eg1 <- 1L #Use suffix "L"
+int_eg1
+
+class(int_eg1)
+
+#Without suffix "L" object will be stored as `numeric`
+int_eg2 <- 1
+int_eg2
+
+class(int_eg2)
+
+#Logical
+
+logic_eg1 <- TRUE
+logic_eg1
+
+logic_eg2 <- FALSE
+logic_eg2
+
+logic_eg3 <- as.logical(1) #Explicit logical assignment to TRUE
+logic_eg3
+
+logic_eg4 <- as.logical(0) #Explicit logical assignment to FALSE
+logic_eg4
+
+
+```
+
+## Data Structure
+
+Main Data Type
+
+-   Vectors
+
+-   Matrices
+
+-   Factors
+
+-   Data frames
+
+-   Lists
+
+## Create Data Type Object
+
+### Vectors
+
+Vectors (one dimensional array): can hold numeric, character or logical values. The elements in a vector all have the same data type
+
+<br> 
+
+Create a vector with combine function `c()`
+
+```{r echo=TRUE}
+# Character vector-----
+vec_chr_eg1 <- c("Abu", "Ahmad", "Joe", "Ben")
+vec_chr_eg1
+```
+
+<br>
+
+```{r echo=TRUE}
+#  Numeric vector-----
+vec_num_eg1 <- c(1, 10, 40)
+vec_num_eg1
+```
+
+<br>
+
+```{r echo=TRUE}
+# Integer vector-------
+vec_int_eg1 <- c(1L, 20L, 40L)
+vec_int_eg1
+```
+
+<br>
+
+```{r echo=TRUE}
+# Logical vector-------
+vec_log_eg1 <- c(TRUE, FALSE)
+vec_log_eg1
+
+
+```
+
+## 
+
+### Matrix
+
+A matrix is an object with the *same data type (numeric, character, or logical)* arranged into *a fixed number of rows and columns*.
+can hold numeric, character or logical values. The elements in a matrix all have the same data type.
+
+```{r echo=TRUE}
+#Construct a matrix--------
+matrix_eg1 <- matrix(1:20, nrow = 10) # Default sorting/filling by column
+matrix_eg1
+
+matrix_eg2 <- matrix(1:20, nrow = 10, byrow = TRUE)
+matrix_eg2
+```
+
+<br>
+
+```{r echo=TRUE}
+#Construct matrix with `rownames` and `colnames`
+
+vec_temp <- pressure$temperature
+vec_press <- pressure$pressure
+
+vec_press_temp <- c(vec_temp, vec_press)
+
+matrix_temp_press <- matrix(vec_press_temp, ncol = 2)
+
+# Assign column names
+colnames(matrix_temp_press) <- c("temperature", "pressure")
+
+#Assign row names
+rownames(matrix_temp_press) <- c(1:dim(matrix_temp_press)[1])
+
+matrix_temp_press
+
+```
+
+## 
+
+### Factor
+
+In R, factors are used to work with categorical variables, variables that have a fixed and known set of possible values. They are also useful when you want to display character vectors in a non-alphabetical order.[^1]
+
+[^1]: https://r4ds.had.co.nz/factors.html#:\~:text=In%20R%2C%20factors%20are%20used,to%20work%20with%20than%20characters.
+
+## 
+
+#### Create Factor - Continuous Variable
+
+```{r echo=TRUE}
+data_eg1 <- c(1,2,2,3,1,2,3,3,1,2,3,3,1)
+
+class(data_eg1)
+
+#Assign to factor 
+factor_data_eg1 <- factor(data_eg1)
+factor_data_eg1
+
+class(factor_data_eg1)
+
+summary(data_eg1)
+summary(factor_data_eg1)
+```
+
+## 
+
+#### Create Factor - Categorical Variable (Discrete)
+
+```{r echo=TRUE}
+data_eg2 <- factor(c("Mar", "Jan", "Apr", "Dec", "Jan", "Dec", "Nov", "Nov", "Dec", "Feb", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "May", "May"))
+summary(data_eg2)
+```
+
+<br>
+
+```{r echo=TRUE}
+#Default level assignment
+levels(data_eg2)
+```
+
+<br>
+
+```{r echo=TRUE}
+# Explicitly define correct level for month
+data_eg2_level <- factor(c("Mar", "Jan", "Apr", "Dec", "Jan", "Dec", "Nov", "Nov", "Dec", "Feb", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "May", "May"), 
+                         levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), ordered = TRUE)
+
+
+levels(data_eg2)
+```
+
+<br>
+
+```{r echo=TRUE}
+summary(data_eg2_level)
+```
+
+## 
+
+#### Carefully when Converting Factor Object!
+
+#### Factor Object Trap!!
+
+```{r echo=TRUE}
+factor_object_eg1 <- factor(c(10, 20, 40, 50))
+class(factor_object_eg1)
+typeof(factor_object_eg1)
+summary(factor_object_eg1)
+```
+
+<br>
+
+Convert `factor` object to `integer`
+
+**Fall into the trap!**
+
+```{r echo=TRUE}
+
+con_factor_object_eg1 <- as.integer(factor_object_eg1)
+con_factor_object_eg1
+```
+
+The result were index numbers! Unexpected value returned.
+
+<br>
+
+**The correct way** <br>
+
+Coerce numeric factor to character than to numeric
+
+```{r echo=TRUE}
+con_factor_object_eg2 <- as.numeric(as.character(factor_object_eg1))
+con_factor_object_eg2
+
+```
+
+## 
+
+### Data Frame
+
+Mostly used object structure for data analysis. It is a table with column/s and row/s with their associated values. Within a column all elements have the same data type, but different columns can be of different data type
+
+<br>
+
+Example: 
+
+<br>
+
+```{r echo=TRUE}
+head(iris, n = 10)
+```
+
+## 
+
+#### Create Data Frame
+
+Example: Planet data (https://en.wikipedia.org/wiki/Planet)
+
+```{r echo=TRUE}
+# Definition of vectors
+name <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+type <- c("Terrestrial planet", "Terrestrial planet", "Terrestrial planet", 
+          "Terrestrial planet", "Gas giant", "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.383, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation <- c(58.65, -243.02, 1, 1.03, 0.41, 0.44, -0.72, 0.67)
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+```
+
+<br>
+
+```{r echo=TRUE}
+# Create a data frame from the vectors
+planets_df <- data.frame(name, type, diameter, rotation, rings)
+planets_df
+```
+
+## 
+
+#### Data Frame vs Tibble
+
+<br>
+
+Create tibble object
+
+```{r echo=TRUE}
+
+planet_tibble <- tibble::as_tibble(planets_df)
+
+planets_df
+planet_tibble
+```
+
+<br>
+
+```{r echo=TRUE}
+class(planets_df)
+
+```
+
+<br>
+
+```{r echo=TRUE}
+class(planet_tibble)
+```
+
+## 
+
+#### Data Frame vs Tibble
+
+There are two main differences in the usage of a data frame vs a tibble: printing, and sub-setting.[^2]
+
+[^2]: https://posit.co/blog/tibble-1-0-0/#:\~:text=Tibbles%20vs%20data%20frames,to%20work%20with%20large%20data.
+
+## 
+
+::: panel-tabset
+<iframe src="https://posit.co/blog/tibble-1-0-0/#:~:text=Tibbles%20vs%20data%20frames,to%20work%20with%20large%20data." title="tibble" width="960" height="1000" data-external="1">
+
+</iframe>
+:::
+
+## 
+
+#### Nested Tibble
+
+
+A nested data frame is a data frame where one (or more) columns is a list of data frames.
+
+
+```{r echo=TRUE}
+library(tidyr)
+
+df1 <- tibble(
+  g = c(1, 2, 3),
+  data = list(
+    tibble(x = 1, y = 2),
+    tibble(x = 4:5, y = 6:7),
+    tibble(x = 10)
+  )
+)
+
+df1
+
+class(df1)
+
+```
+
+<br>
+
+*Source: [Nested data tidyr](https://tidyr.tidyverse.org/articles/nest.html)* 
+
+## 
+
+### Lists
+As opposed to vectors, lists can hold components of different types, just as your to-do lists can contain different categories of tasks.
+
+<br>
+
+Creating list
+```{r echo=TRUE}
+list_eg1 <- list(vec_chr_eg1, vec_int_eg1, vec_num_eg1, factor_object_eg1, data_eg2_level, df1)
+names(list_eg1) <- c("vec_chr_eg1", "vec_int_eg1", "vec_num_eg1", "factor_object_eg1", "data_eg2_level", "df1")
+```
+
+<br> 
+
+```{r echo=TRUE}
+class(list_eg1)
+summary(list_eg1) #List object summary
+```
+
+<br>
+
+```{r echo=TRUE}
+lapply(list_eg1, summary) #Summary for list object's components
+
+```
+
+
+## Examine Object Features (Loosely Defined)
+
+### Common Function Used
+
+-   `class()` - High level object
+
+-   `typeof()` - Low level / data type
+
+-   `length()` - Object length
+
+-   `attributes()` - Meta data assigned to object
+
+-   `summary()` - Object summary
+
+-   `str()` - Object structure
+
+<br>
+
+*For more details explanation, help yourself `help()` or `?` in R-Console*
+
+## 
+
+## Quiz
+Examine object features below
+
+```{r}
+
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+lm_D9 <- lm(weight ~ group)
+lm_D90 <- lm(weight ~ group - 1) # omitting intercept
+```
+
+

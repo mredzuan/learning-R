@@ -1,0 +1,150 @@
+---
+title: "R Foundation Training"
+author: "Redzuan"
+format: revealjs
+logo: "images/AEM.png"
+footer: PE & Data Solutions
+scrollable: true
+smaller: false
+editor: visual
+toc: true
+---
+
+# Introduction
+
+## Training Objectives
+
+i.  Familiarization with R-Ecosystem
+
+ii. Learn & focus the typical processes involved in Extract, Transform & Loading (ETL) with R programming
+
+iii. Able to apply new knowledge in actual ETL project
+
+<br>
+
+> ***Welcome to R Programming Ecosystem!!*** ![](images/R_logo.svg.png){width="98"}
+
+## Topics Covered
+
+i.  Introduction to R
+
+    -   What can we do with R?
+
+    -   R-Studio IDE
+
+    -   Coding style guide
+
+    -   Data type
+
+<br>
+
+ii. Import & Export Data
+
+    -   Excel, CSV
+
+    -   Database
+
+<br>
+
+iii. Data Manipulation
+
+     -   Introduction to [dplyr](https://dplyr.tidyverse.org/) package
+     -   Data manipulation with dplyr
+     -   Data aggregation (count, grouping, summarize, slice, etc.)
+     -   Data reshaping
+     -   Handling date
+
+<br>
+
+iv. Regular Expression (Regex)
+
+    -   Introduction to [stringr](https://stringr.tidyverse.org/articles/regular-expressions.html) package
+    -   Regex operation with stringr
+
+<br>
+
+v.  Documents Extraction
+
+    -   PDF & Excel
+
+    -   Meta data
+
+    -   Attachment from \*.msg
+
+# R Ecosystem
+
+## Field Guide R Ecosystem
+
+<iframe src="https://fg2re.sellorm.com/" title="Field Guide R Ecosystem" width="960" height="1000" data-external="1">
+
+</iframe>
+
+## Resources Supported by Posit
+
+![](images/posit_resources.png)
+
+## Let's take a closer look! (*Some of them*)
+
+::: panel-tabset
+### Tidyverse
+
+<iframe src="https://www.tidyverse.org/" title="tidyverse" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### Shiny
+
+<iframe src="https://shiny.rstudio.com/" title="Shiny" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### Quarto
+
+<iframe src="https://quarto.org/" title="Quarto" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### Plumber
+
+<iframe src="https://www.rplumber.io/" title="plumber" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### Reticulate
+
+<iframe src="https://rstudio.github.io/reticulate/" title="Reticulate" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### TensorFlow
+
+<iframe src="https://tensorflow.rstudio.com/" title="TensorFlow" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### Working With DB
+
+<iframe src="https://solutions.posit.co/connections/db/" title="Working with DB" width="960" height="1000" data-external="1">
+
+</iframe>
+
+### And much more....
+
+<iframe src="images\Data_Science_With_R_Workflow.pdf" title="And more" width="960" height="1000" data-external="1">
+
+</iframe>
+
+Source: [Business Science](https://www.business-science.io/)
+:::
+
+## R Studio IDE Walkthrough
+
+<iframe src="https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html" title="R Studio Guide" width="960" height="1000" data-external="1">
+
+</iframe>
+
+## Coding Style - Good Practices
+
+<iframe src="https://style.tidyverse.org/index.html" title="Tidyverse style guide" width="960" height="1000" data-external="1">
+
+</iframe>
