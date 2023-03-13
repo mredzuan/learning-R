@@ -1021,7 +1021,12 @@ $df1
 <h2>Quiz</h2>
 <p>Examine object features below</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a>ctl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.17</span>,<span class="fl">5.58</span>,<span class="fl">5.18</span>,<span class="fl">6.11</span>,<span class="fl">4.50</span>,<span class="fl">4.61</span>,<span class="fl">5.17</span>,<span class="fl">4.53</span>,<span class="fl">5.33</span>,<span class="fl">5.14</span>)</span>
+<span id="cb93-2"><a href="#cb93-2"></a>trt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.81</span>,<span class="fl">4.17</span>,<span class="fl">4.41</span>,<span class="fl">3.59</span>,<span class="fl">5.87</span>,<span class="fl">3.83</span>,<span class="fl">6.03</span>,<span class="fl">4.89</span>,<span class="fl">4.32</span>,<span class="fl">4.69</span>)</span>
+<span id="cb93-3"><a href="#cb93-3"></a>group <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Ctl"</span>,<span class="st">"Trt"</span>))</span>
+<span id="cb93-4"><a href="#cb93-4"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(ctl, trt)</span>
+<span id="cb93-5"><a href="#cb93-5"></a>lm_D9 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> group)</span>
+<span id="cb93-6"><a href="#cb93-6"></a>lm_D90 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> group <span class="sc">-</span> <span class="dv">1</span>) <span class="co"># omitting intercept</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img src="images/AEM.png" class="slide-logo r-stretch"><div class="footer footer-default">
